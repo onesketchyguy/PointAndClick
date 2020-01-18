@@ -10,5 +10,7 @@ namespace World
         public Sprite sprite;
         public new string name = "New item";
         public string description = "A stock description for a new item.";
+
+        public bool canBePickedUp = true;
     }
 }

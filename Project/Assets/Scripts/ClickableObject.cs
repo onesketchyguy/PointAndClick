@@ -6,15 +6,16 @@ namespace World
 {
     public class ClickableObject : MonoBehaviour
     {
-        private Vector3 startScale, startPosition;
+        private Vector3 startScale;
 
         public WorldObject Item;
 
         public SpriteRenderer spriteRenderer;
 
+        private UI.PopupManager popupManager;
+
         private void Start()
         {
-            startPosition = transform.position;
             startScale = transform.localScale;
 
             if (spriteRenderer == null)
@@ -22,6 +23,8 @@ namespace World
 
             spriteRenderer.sprite = Item.sprite;
             gameObject.name = Item.name;
+
+            popupManager = FindObjectOfType<UI.PopupManager>();
         }
 
         private void OnMouseOver()
@@ -36,7 +39,7 @@ namespace World
 
         private void OnMouseUpAsButton()
         {
-            FindObjectOfType<UI.PopupManager>().DisplayObject(Item);
+            popupManager.DisplayObject(Item, gameObject);
         }
     }
 }
