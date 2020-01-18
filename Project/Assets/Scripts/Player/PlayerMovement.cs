@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Player
 {
-    public class PlayerBehaviour : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         private new Rigidbody2D rigidbody;
 
