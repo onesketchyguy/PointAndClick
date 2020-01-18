@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using World.UI;
 
 namespace World
 {
@@ -37,6 +38,9 @@ namespace World
 
         public void Remove(WorldObject obj)
         {
+            if (InteractionManager.objectUsing == obj)
+                InteractionManager.objectUsing = null;
+
             if (items == null || items.Length == 0)
             {
                 Debug.LogError($"Inventory empty! Unable to complete action!");
@@ -44,24 +48,29 @@ namespace World
             }
             else
             {
-                var oldItems = items;
-                items = new WorldObject[items.Length - 1];
-
-                var index = 0;
-                for (int i = 0; i < oldItems.Length; i++)
+                if (items.Length == 1)
                 {
-                    index++;
-                    var item = oldItems[i];
+                    items = null;
+                }
+                else
+                {
+                    var oldItems = items;
+                    items = new WorldObject[items.Length - 1];
 
-                    if (item.name == obj.name && item.description == obj.description)
+                    var index = 0;
+                    for (int i = 0; i < oldItems.Length; i++)
                     {
-                        // This is the correct item remove this
+                        index++;
+                        var item = oldItems[i];
 
-                        items[i] = null;
-                        index--;
+                        if (item.name == obj.name && item.description == obj.description)
+                        {
+                            // This is the correct item remove this
+                            index--;
+                        }
+
+                        items[i] = oldItems[index];
                     }
-
-                    items[i] = oldItems[index];
                 }
             }
 

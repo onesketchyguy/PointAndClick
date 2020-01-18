@@ -26,6 +26,8 @@ namespace World.UI
                 Destroy(item.gameObject);
             }
 
+            if (items == null) return;
+
             // Update items
             foreach (var item in items)
             {
@@ -36,7 +38,7 @@ namespace World.UI
         private void CreateItem(WorldObject item)
         {
             var inventoryItem = Instantiate(itemPrefab, transform);
-            inventoryItem.GetComponent<DisplayInventoryItem>().Init(item);
+            inventoryItem.GetComponent<InventoryItem>().Init(item);
         }
     }
 }

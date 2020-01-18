@@ -14,6 +14,16 @@ namespace World
 
         private UI.PopupManager popupManager;
 
+        private UI.HelpText helpText;
+
+        private void OnValidate()
+        {
+            if (Item != null && spriteRenderer != null)
+            {
+                spriteRenderer.sprite = Item.sprite;
+            }
+        }
+
         private void Start()
         {
             startScale = transform.localScale;
@@ -25,16 +35,20 @@ namespace World
             gameObject.name = Item.name;
 
             popupManager = FindObjectOfType<UI.PopupManager>();
+            helpText = FindObjectOfType<UI.HelpText>();
         }
 
         private void OnMouseOver()
         {
             transform.localScale = startScale * 1.25f;
+
+            helpText.SetSelected(Item);
         }
 
         private void OnMouseExit()
         {
             transform.localScale = startScale;
+            helpText.SetSelected(null);
         }
 
         private void OnMouseUpAsButton()
