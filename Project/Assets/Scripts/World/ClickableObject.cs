@@ -16,6 +16,8 @@ namespace World
 
         private UI.HelpText helpText;
 
+        private float sizeMultiplier = 1.12f;
+
         private void OnValidate()
         {
             if (Item != null && spriteRenderer != null)
@@ -40,7 +42,7 @@ namespace World
 
         private void OnMouseOver()
         {
-            transform.localScale = startScale * 1.25f;
+            transform.localScale = startScale * sizeMultiplier;
 
             helpText.SetSelected(Item);
         }
