@@ -34,6 +34,16 @@ namespace Player
             n_input.y *= 0.5f;
 
             rigidbody.MovePosition((Vector2)transform.position + ((n_input * speed) * Time.deltaTime));
+
+            if (n_input.x > 0.1f)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            if (n_input.x < -0.1f)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
         }
     }
 }

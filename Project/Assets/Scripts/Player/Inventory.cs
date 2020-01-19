@@ -58,7 +58,7 @@ namespace World
                     items = new WorldObject[items.Length - 1];
 
                     var index = 0;
-                    for (int i = 0; i < oldItems.Length; i++)
+                    for (int i = 0; i < items.Length; i++)
                     {
                         index++;
                         var item = oldItems[i];

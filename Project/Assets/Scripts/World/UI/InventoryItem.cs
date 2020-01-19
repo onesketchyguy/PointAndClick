@@ -17,20 +17,39 @@ namespace World.UI
 
         private Vector3 scale;
 
+        private void Start()
+        {
+            scale = GetComponent<RectTransform>().localScale;
+
+            InteractionManager.onUsingUpdate += UpdateThis;
+        }
+
+        private void UpdateThis(WorldObject currentSelected)
+        {
+            if (currentSelected != Item)
+            {
+                GetComponent<RectTransform>().localScale = scale;
+            }
+            else
+            {
+                GetComponent<RectTransform>().localScale = scale + Vector3.one * 0.25f;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            InteractionManager.onUsingUpdate -= UpdateThis;
+        }
+
         public void Clicked()
         {
             if (InteractionManager.objectUsing == Item)
             {
                 InteractionManager.objectUsing = null;
-
-                GetComponent<RectTransform>().localScale = scale;
             }
             else
             {
                 InteractionManager.objectUsing = Item;
-
-                scale = GetComponent<RectTransform>().localScale;
-                GetComponent<RectTransform>().localScale = scale + Vector3.one * 0.25f;
             }
         }
 

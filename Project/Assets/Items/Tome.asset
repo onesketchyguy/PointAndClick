@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98661449a192dfe4c9ab0c7fb323cbed, type: 3}
-  m_Name: New item
+  m_Name: Tome
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 233832a0297669449a237406ceab82e3, type: 3}
-  description: A stock description for a new item.
+  description: It has some scribles in a language I don't understand...
   canBePickedUp: 1

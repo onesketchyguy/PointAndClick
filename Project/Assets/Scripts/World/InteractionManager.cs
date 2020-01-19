@@ -6,7 +6,28 @@ namespace World.UI
 {
     public class InteractionManager : MonoBehaviour
     {
-        public static WorldObject objectUsing;
+        private static WorldObject _object;
+
+        public static WorldObject objectUsing
+        {
+            get
+            {
+                return _object;
+            }
+            set
+            {
+                if (onUsingUpdate != null)
+                {
+                    onUsingUpdate.Invoke(value);
+                }
+
+                _object = value;
+            }
+        }
+
+        public delegate void UsingUpdated(WorldObject objectUsing);
+
+        public static UsingUpdated onUsingUpdate;
     }
 
     [System.Serializable]

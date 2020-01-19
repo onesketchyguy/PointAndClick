@@ -22,7 +22,7 @@ namespace Utility.Tools
 
                 textureImporter.filterMode = FilterMode.Point;
 
-                textureImporter.spritePixelsPerUnit = 4;
+                textureImporter.spritePixelsPerUnit = 32;
             }
         }
     }
