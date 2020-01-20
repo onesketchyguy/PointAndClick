@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using World.UI;
 
 namespace World
 {
@@ -12,6 +11,20 @@ namespace World
         public delegate void OnItemsChangedCallback(WorldObject[] newItems);
 
         public OnItemsChangedCallback itemsChangedCallback;
+
+        public bool contains(WorldObject obj)
+        {
+            if (items != null && items.Length > 0)
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i] == obj)
+                        return true;
+                }
+            }
+
+            return false;
+        }
 
         public void Add(WorldObject obj)
         {

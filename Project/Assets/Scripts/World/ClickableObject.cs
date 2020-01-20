@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using World.UI;
 
 namespace World
 {
@@ -17,6 +18,12 @@ namespace World
         private UI.HelpText helpText;
 
         private float sizeMultiplier = 1.12f;
+
+        public string defaultOutPut = "I can't do that...";
+
+        public Interaction[] interactions;
+
+        private CutSceneManager cutSceneManager;
 
         private void OnValidate()
         {
@@ -35,18 +42,24 @@ namespace World
             if (spriteRenderer == null)
                 spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-            spriteRenderer.sprite = Item.sprite;
-            gameObject.name = Item.name;
+            if (Item != null && spriteRenderer != null)
+            {
+                spriteRenderer.sprite = Item.sprite;
+                gameObject.name = Item.name;
+            }
 
-            popupManager = FindObjectOfType<UI.PopupManager>();
-            helpText = FindObjectOfType<UI.HelpText>();
+            popupManager = FindObjectOfType<PopupManager>();
+            helpText = FindObjectOfType<HelpText>();
+            cutSceneManager = FindObjectOfType<CutSceneManager>();
         }
 
         private void OnMouseOver()
         {
             transform.localScale = startScale * sizeMultiplier;
 
-            helpText.SetSelected(Item);
+            if (Item != null)
+                helpText.SetSelected(Item);
+            else helpText.SetText(gameObject.name);
         }
 
         private void OnMouseExit()
@@ -57,7 +70,46 @@ namespace World
 
         private void OnMouseUpAsButton()
         {
-            popupManager.DisplayObject(Item, gameObject);
+            if (Item == null)
+            {
+                Use(InteractionManager.objectUsing);
+            }
+            else
+            {
+                if (InteractionManager.objectUsing != null)
+                {
+                    Use(InteractionManager.objectUsing);
+
+                    return;
+                }
+
+                popupManager.DisplayObject(Item, gameObject);
+            }
+        }
+
+        public void Use(WorldObject @object)
+        {
+            // Check to see the usage of this item
+            for (int i = 0; i < interactions.Length; i++)
+            {
+                if (interactions[i].objectUsed == @object)
+                {
+                    interactions[i].Event.Invoke();
+
+                    var output = interactions[i].GetOutput();
+
+                    if (output != string.Empty)
+                        cutSceneManager.DisplayMessage(output);
+
+                    return;
+                }
+            }
+
+            if (@object == null)
+
+                cutSceneManager.DisplayMessage(defaultOutPut);
+            else
+                cutSceneManager.DisplayMessage(InteractionManager.GetFailedActionOutput(@object, gameObject));
         }
     }
 }

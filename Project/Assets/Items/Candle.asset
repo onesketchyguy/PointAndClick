@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98661449a192dfe4c9ab0c7fb323cbed, type: 3}
-  m_Name: Plaque
+  m_Name: Candle
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 233832a0297669449a237406ceab82e3, type: 3}
-  description: It reads "In the heart of the rosarium, the pallid fingers point you
-    forward"
-  canBePickedUp: 0
+  sprite: {fileID: 21300000, guid: 1fcb5146b7aa55a4c8c104067b0f7d5e, type: 3}
+  description: 
+  canBePickedUp: 1

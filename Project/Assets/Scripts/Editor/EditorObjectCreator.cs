@@ -16,11 +16,14 @@ namespace World
             spr.transform.localPosition = Vector3.zero;
             var spriteRenderer = spr.GetComponent<SpriteRenderer>();
             spriteRenderer.sortingOrder = 100;
+            spriteRenderer.sortingLayerName = "Back";
 
             var clickable = go.GetComponent<ClickableObject>();
 
             clickable.spriteRenderer = spriteRenderer;
             clickable.Item = null;
+
+            go.layer = LayerMask.NameToLayer("Interactable");
         }
     }
 }
