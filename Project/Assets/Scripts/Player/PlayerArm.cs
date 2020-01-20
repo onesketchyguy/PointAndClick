@@ -6,24 +6,33 @@ namespace Player
 {
     public class PlayerArm : MonoBehaviour
     {
-        public GameObject LowerArm;
-        public GameObject UpperArm;
+        public GameObject Arm;
+
+        public PlayerMovement move;
 
         private void Update()
         {
             // Follow the mouse
             var mouse = Utility.Utilities.GetMousePosition();
 
-            float dist = 0.3f;
+            LookAtPosition(Arm, mouse);
 
-            LookAtPosition(UpperArm, LowerArm.transform.position);
-            LookAtPosition(LowerArm, mouse);
-
-            mouse.x = Mathf.Clamp(mouse.x, transform.position.x - dist, transform.position.x + dist);
-            mouse.y = Mathf.Clamp(mouse.y, transform.position.y - (dist / 2), transform.position.y + (dist / 2));
-            mouse.z = 0;
-
-            FollowPos(LowerArm, mouse);
+            if (mouse.x > move.transform.position.x && !move.facingRight)
+            {
+                move.overrideFace = true;
+                move.facingRight = true;
+            }
+            else
+            if (mouse.x < move.transform.position.x && move.facingRight)
+            {
+                move.overrideFace = true;
+                move.facingRight = false;
+            }
+            else
+            {
+                if (move.input == Vector2.zero && move.overrideFace == true)
+                    move.overrideFace = false;
+            }
         }
 
         private void LookAtPosition(GameObject follower, Vector3 followPosition)
@@ -32,11 +41,6 @@ namespace Player
             var direction = ((Vector2)followPosition - (Vector2)follower.transform.position).normalized;
             // Set vector of transform directly
             follower.transform.up = direction;
-        }
-
-        private void FollowPos(GameObject follower, Vector3 followPosition)
-        {
-            follower.transform.position = (followPosition);
         }
     }
 }

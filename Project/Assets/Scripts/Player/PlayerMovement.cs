@@ -11,7 +11,11 @@ namespace Player
 
         public float speed = 5;
 
-        private Vector2 input
+        internal bool facingRight = true;
+
+        internal bool overrideFace = false;
+
+        internal Vector2 input
         {
             get
             {
@@ -35,15 +39,20 @@ namespace Player
 
             rigidbody.MovePosition((Vector2)transform.position + ((n_input * speed) * Time.deltaTime));
 
-            if (n_input.x > 0.1f)
+            if (!overrideFace)
             {
-                transform.localScale = new Vector3(1, 1, 1);
+                if (n_input.x > 0.1f)
+                {
+                    facingRight = true;
+                }
+                else
+                if (n_input.x < -0.1f)
+                {
+                    facingRight = false;
+                }
             }
-            else
-            if (n_input.x < -0.1f)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
+
+            transform.localScale = new Vector3(facingRight ? 1 : -1, 1, 1);
         }
     }
 }
