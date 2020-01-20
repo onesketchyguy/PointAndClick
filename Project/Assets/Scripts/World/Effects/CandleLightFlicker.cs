@@ -7,7 +7,7 @@ namespace World.Effects
 {
     public class CandleLightFlicker : MonoBehaviour
     {
-        public Light2D light2D;
+        public Light2D[] lights;
 
         public float flickerSpeed = 0.35f;
 
@@ -17,7 +17,7 @@ namespace World.Effects
 
         private void Update()
         {
-            if (light2D == null)
+            if (lights == null)
             {
                 Debug.LogError($"No light2D assigned to {gameObject.name}!");
                 Destroy(this);
@@ -25,10 +25,18 @@ namespace World.Effects
                 return;
             }
 
-            var pingPong = Mathf.PingPong(Time.time, flickerSpeed) / flickerSpeed;
-            currentStep = pingPong;
+            Flicker(lights);
+        }
 
-            light2D.color = Color.Lerp(light2D.color, colors.Evaluate(currentStep), pingPong);
+        private void Flicker(params Light2D[] _lights)
+        {
+            foreach (var light2D in _lights)
+            {
+                var pingPong = Mathf.PingPong(Time.time, flickerSpeed) / flickerSpeed;
+                currentStep = pingPong;
+
+                light2D.color = Color.Lerp(light2D.color, colors.Evaluate(currentStep), pingPong);
+            }
         }
     }
 }

@@ -23,6 +23,8 @@ namespace World
             if (Item != null && spriteRenderer != null)
             {
                 spriteRenderer.sprite = Item.sprite;
+
+                gameObject.name = Item.name;
             }
         }
 
