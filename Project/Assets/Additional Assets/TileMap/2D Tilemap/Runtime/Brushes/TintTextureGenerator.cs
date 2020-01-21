@@ -14,7 +14,7 @@ public class TintTextureGenerator : MonoBehaviour
 
     /// <summary>
     /// Callback when the TintTextureGenerator is loaded.
-    /// Refreshes the Grid Component on this GameObject. 
+    /// Refreshes the Grid Component on this GameObject.
     /// </summary>
     public void Start()
     {
@@ -22,6 +22,7 @@ public class TintTextureGenerator : MonoBehaviour
     }
 
     private Texture2D m_TintTexture;
+
     private Texture2D tintTexture
     {
         get
@@ -103,18 +104,18 @@ public class TintTextureGenerator : MonoBehaviour
         GetGridInformation(grid).SetPositionProperty(position, "Tint", color);
         Refresh(grid, position);
     }
-    
-    Vector3Int WorldToTexture(Vector3Int world)
+
+    private Vector3Int WorldToTexture(Vector3Int world)
     {
         return new Vector3Int(world.x + tintTexture.width / 2, world.y + tintTexture.height / 2, 0);
     }
 
-    Vector3Int TextureToWorld(Vector3Int texpos)
+    private Vector3Int TextureToWorld(Vector3Int texpos)
     {
         return new Vector3Int(texpos.x - tintTexture.width / 2, texpos.y - tintTexture.height / 2, 0);
     }
 
-    GridInformation GetGridInformation(Grid grid)
+    private GridInformation GetGridInformation(Grid grid)
     {
         GridInformation gridInformation = grid.GetComponent<GridInformation>();
 
@@ -124,7 +125,7 @@ public class TintTextureGenerator : MonoBehaviour
         return gridInformation;
     }
 
-    void RefreshGlobalShaderValues()
+    private void RefreshGlobalShaderValues()
     {
         Shader.SetGlobalTexture("_TintMap", m_TintTexture);
         Shader.SetGlobalFloat("_TintMapSize", k_TintMapSize);

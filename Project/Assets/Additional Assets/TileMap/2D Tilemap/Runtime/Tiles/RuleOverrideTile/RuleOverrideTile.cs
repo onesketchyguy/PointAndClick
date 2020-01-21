@@ -13,7 +13,6 @@ namespace UnityEngine.Tilemaps
     [CreateAssetMenu(fileName = "New Rule Override Tile", menuName = "Tiles/Rule Override Tile")]
     public class RuleOverrideTile : TileBase
     {
-
         /// <summary>
         /// A data structure storing the Sprite overriding the original RuleTile Sprite
         /// </summary>
@@ -35,7 +34,7 @@ namespace UnityEngine.Tilemaps
         }
 
         /// <summary>
-        /// Gets the overriding Sprite of a given Sprite. 
+        /// Gets the overriding Sprite of a given Sprite.
         /// </summary>
         /// <param name="original">The original Sprite that is overridden</param>
         public Sprite this[Sprite originalSprite]
@@ -77,7 +76,7 @@ namespace UnityEngine.Tilemaps
         }
 
         /// <summary>
-        /// Gets the overriding GameObject of a given GameObject. 
+        /// Gets the overriding GameObject of a given GameObject.
         /// </summary>
         /// <param name="original">The original GameObject that is overridden</param>
         public GameObject this[GameObject originalGameObject]
@@ -122,10 +121,12 @@ namespace UnityEngine.Tilemaps
         /// The RuleTile to override
         /// </summary>
         public RuleTile m_Tile;
+
         /// <summary>
         /// A list of Sprite Overrides
         /// </summary>
         public List<TileSpritePair> m_Sprites = new List<TileSpritePair>();
+
         /// <summary>
         /// A list of GameObject Overrides
         /// </summary>

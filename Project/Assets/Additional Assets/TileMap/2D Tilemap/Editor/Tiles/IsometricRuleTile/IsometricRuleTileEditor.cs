@@ -7,7 +7,6 @@ namespace UnityEditor
     [CanEditMultipleObjects]
     public class IsometricRuleTileEditor : RuleTileEditor
     {
-
         private static readonly int[] s_Arrows = { 3, 0, 1, 6, -1, 2, 7, 8, 5 };
 
         public override int GetArrowIndex(Vector3Int position)

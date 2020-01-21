@@ -41,13 +41,16 @@ namespace UnityEditor.Tilemaps
         {
             get { return (m_Limit.x * 2 + 1) * (m_Limit.y * 2 + 1) * (m_Limit.z * 2 + 1); }
         }
-        
+
         [SerializeField]
         private Vector3Int m_Gap = Vector3Int.one;
+
         [SerializeField]
         private Vector3Int m_Limit = Vector3Int.one * 3;
+
         [SerializeField]
         private BitArray m_VisitedLocations = new BitArray(7 * 7 * 7);
+
         [SerializeField]
         private Stack<Vector3Int> m_NextPosition = new Stack<Vector3Int>();
 
@@ -97,7 +100,7 @@ namespace UnityEditor.Tilemaps
             Vector3Int limitSize = Vector3Int.one + limit * 2;
             BoundsInt limitBounds = new BoundsInt(limitOrigin, limitSize);
             BoundsInt pickBounds = new BoundsInt(position.position, Vector3Int.one);
- 
+
             m_VisitedLocations.SetAll(false);
             m_VisitedLocations.Set(GetIndex(position.position, limitOrigin, limitSize), true);
             m_NextPosition.Clear();
@@ -175,7 +178,7 @@ namespace UnityEditor.Tilemaps
                 bounds.size = new Vector3Int(bounds.size.x, bounds.size.y, bounds.size.z + increase);
             }
         }
-        
+
         private int GetIndex(Vector3Int position, Vector3Int origin, Vector3Int size)
         {
             return (position.z - origin.z) * size.y * size.x

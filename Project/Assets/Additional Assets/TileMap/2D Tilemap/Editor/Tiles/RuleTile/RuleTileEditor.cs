@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -29,6 +29,7 @@ namespace UnityEditor
         private const string s_Fixed = "iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAA50lEQVQ4T51Ruw6CQBCkwBYKWkIgQAs9gfgCvgb4BML/qWBM9Bdo9QPIuVOQ3JIzosVkc7Mzty9NCPE3lORaKMm1YA/LsnTXdbdhGJ6iKHoVRTEi+r4/OI6zN01Tl/XM7HneLsuyW13XU9u2ous6gYh3kiR327YPsp6ZgyDom6aZYFqiqqqJ8mdZz8xoca64BHjkZT0zY0aVcQbysp6Z4zj+Vvkp65mZttxjOSozdkEzD7KemekcxzRNHxDOHSDiQ/DIy3pmpjtuSJBThStGKMtyRKSOLnSm3DCMz3f+FUpyLZTkOgjtDSWORSDbpbmNAAAAAElFTkSuQmCC";
 
         private static Texture2D[] s_Arrows;
+
         public static Texture2D[] arrows
         {
             get
@@ -51,6 +52,7 @@ namespace UnityEditor
         }
 
         private static Texture2D[] s_AutoTransforms;
+
         public static Texture2D[] autoTransforms
         {
             get
@@ -149,6 +151,7 @@ namespace UnityEditor
                 case RuleTile.TilingRule.OutputSprite.Random:
                     inspectorHeight = k_DefaultElementHeight + k_SingleLineHeight * (rule.m_Sprites.Length + 3) + k_PaddingBetweenRules;
                     break;
+
                 case RuleTile.TilingRule.OutputSprite.Animation:
                     inspectorHeight = k_DefaultElementHeight + k_SingleLineHeight * (rule.m_Sprites.Length + 2) + k_PaddingBetweenRules;
                     break;
@@ -314,9 +317,11 @@ namespace UnityEditor
                 case RuleTile.TilingRule.Neighbor.This:
                     GUI.DrawTexture(rect, arrows[GetArrowIndex(position)]);
                     break;
+
                 case RuleTile.TilingRule.Neighbor.NotThis:
                     GUI.DrawTexture(rect, arrows[9]);
                     break;
+
                 default:
                     var style = new GUIStyle();
                     style.alignment = TextAnchor.MiddleCenter;
@@ -346,15 +351,19 @@ namespace UnityEditor
                 case RuleTile.TilingRule.Transform.Rotated:
                     GUI.DrawTexture(rect, autoTransforms[0]);
                     break;
+
                 case RuleTile.TilingRule.Transform.MirrorX:
                     GUI.DrawTexture(rect, autoTransforms[1]);
                     break;
+
                 case RuleTile.TilingRule.Transform.MirrorY:
                     GUI.DrawTexture(rect, autoTransforms[2]);
                     break;
+
                 case RuleTile.TilingRule.Transform.Fixed:
                     GUI.DrawTexture(rect, autoTransforms[3]);
                     break;
+
                 case RuleTile.TilingRule.Transform.MirrorXY:
                     GUI.DrawTexture(rect, autoTransforms[4]);
                     break;
@@ -651,7 +660,7 @@ namespace UnityEditor
         }
 
         [Serializable]
-        class RuleTileRuleWrapper
+        private class RuleTileRuleWrapper
         {
             [SerializeField]
             public List<RuleTile.TilingRule> rules = new List<RuleTile.TilingRule>();

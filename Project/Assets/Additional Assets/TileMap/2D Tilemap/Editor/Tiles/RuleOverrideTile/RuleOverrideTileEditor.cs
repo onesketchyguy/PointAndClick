@@ -1,15 +1,15 @@
-﻿using UnityEngine;
-using UnityEngine.Tilemaps;
+﻿using System.Collections.Generic;
 using UnityEditorInternal;
-using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace UnityEditor
 {
     [CustomEditor(typeof(RuleOverrideTile))]
     public class RuleOverrideTileEditor : Editor
     {
-
         public RuleOverrideTile overrideTile => target as RuleOverrideTile;
+
         public RuleTileEditor ruleTileEditor
         {
             get
@@ -24,15 +24,15 @@ namespace UnityEditor
             }
         }
 
-        RuleTileEditor m_RuleTileEditor;
-        RuleTile m_RuleTileEditorTarget;
+        private RuleTileEditor m_RuleTileEditor;
+        private RuleTile m_RuleTileEditorTarget;
 
         public List<KeyValuePair<Sprite, Sprite>> m_Sprites = new List<KeyValuePair<Sprite, Sprite>>();
         public List<KeyValuePair<GameObject, GameObject>> m_GameObjects = new List<KeyValuePair<GameObject, GameObject>>();
         public ReorderableList m_SpriteList;
         public ReorderableList m_GameObjectList;
-        int m_MissingOriginalSpriteIndex;
-        int m_MissingOriginalGameObjectIndex;
+        private int m_MissingOriginalSpriteIndex;
+        private int m_MissingOriginalGameObjectIndex;
 
         public static float k_SpriteElementHeight = 48;
         public static float k_GameObjectElementHeight = 16;
@@ -285,7 +285,7 @@ namespace UnityEditor
             SceneView.RepaintAll();
 
             SaveInstanceTileAsset();
-        
+
             if (overrideTile.m_InstanceTile)
             {
                 overrideTile.Override();

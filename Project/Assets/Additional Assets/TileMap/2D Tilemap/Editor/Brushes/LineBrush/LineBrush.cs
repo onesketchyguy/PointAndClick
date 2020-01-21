@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using System.Linq;
 
 namespace UnityEditor.Tilemaps
 {
@@ -18,10 +18,12 @@ namespace UnityEditor.Tilemaps
         /// Whether the Line Brush has started drawing a line.
         /// </summary>
         public bool lineStartActive;
+
         /// <summary>
         /// Ensures that there are orthogonal connections of Tiles from the start of the line to the end.
         /// </summary>
         public bool fillGaps;
+
         /// <summary>
         /// The current starting point of the line.
         /// </summary>
@@ -49,7 +51,7 @@ namespace UnityEditor.Tilemaps
                 Vector2Int startPos = new Vector2Int(lineStart.x, lineStart.y);
                 Vector2Int endPos = new Vector2Int(position.x, position.y);
                 if (startPos == endPos)
-                    base.Paint(grid, brushTarget, position);    
+                    base.Paint(grid, brushTarget, position);
                 else
                 {
                     foreach (var point in GetPointsOnLine(startPos, endPos, fillGaps))
@@ -99,7 +101,6 @@ namespace UnityEditor.Tilemaps
                     var extraStart = startPos;
                     var extraEnd = endPos;
 
-
                     if (Mathf.Abs(rise) >= Mathf.Abs(run))
                     {
                         // up
@@ -111,14 +112,12 @@ namespace UnityEditor.Tilemaps
                         // down
                         else // rise < 0
                         {
-
                             extraStart.y -= 1;
                             extraEnd.y -= 1;
                         }
                     }
                     else // Mathf.Abs(rise) < Mathf.Abs(run)
                     {
-
                         // right
                         if (run > 0)
                         {
@@ -137,7 +136,6 @@ namespace UnityEditor.Tilemaps
                     extraPoints = extraPoints.Except(new[] { extraEnd });
                     points = points.Union(extraPoints);
                 }
-
             }
 
             return points;

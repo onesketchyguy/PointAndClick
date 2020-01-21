@@ -12,9 +12,8 @@ namespace UnityEngine.Tilemaps
     [CreateAssetMenu(fileName = "New Advanced Rule Override Tile", menuName = "Tiles/Advanced Rule Override Tile")]
     public class AdvancedRuleOverrideTile : RuleOverrideTile
     {
-
         /// <summary>
-        /// Gets the overriding TilingRuleOutput of a given TilingRule. 
+        /// Gets the overriding TilingRuleOutput of a given TilingRule.
         /// </summary>
         /// <param name="original">The original TilingRule that is overridden</param>
         public RuleTile.TilingRuleOutput this[RuleTile.TilingRule originalRule]

@@ -36,6 +36,7 @@ namespace UnityEngine.Tilemaps
         }
 
         private Dictionary<GridInformationKey, GridInformationValue> m_PositionProperties = new Dictionary<GridInformationKey, GridInformationValue>();
+
         internal Dictionary<GridInformationKey, GridInformationValue> PositionProperties
         {
             get { return m_PositionProperties; }
@@ -116,22 +117,27 @@ namespace UnityEngine.Tilemaps
                         m_PositionIntKeys.Add(kvp.Key);
                         m_PositionIntValues.Add((int)kvp.Value.data);
                         break;
+
                     case GridInformationType.String:
                         m_PositionStringKeys.Add(kvp.Key);
                         m_PositionStringValues.Add(kvp.Value.data as String);
                         break;
+
                     case GridInformationType.Float:
                         m_PositionFloatKeys.Add(kvp.Key);
                         m_PositionFloatValues.Add((float)kvp.Value.data);
                         break;
+
                     case GridInformationType.Double:
                         m_PositionDoubleKeys.Add(kvp.Key);
                         m_PositionDoubleValues.Add((double)kvp.Value.data);
                         break;
+
                     case GridInformationType.Color:
                         m_PositionColorKeys.Add(kvp.Key);
                         m_PositionColorValues.Add((Color)kvp.Value.data);
                         break;
+
                     default:
                         m_PositionObjectKeys.Add(kvp.Key);
                         m_PositionObjectValues.Add(kvp.Value.data as Object);

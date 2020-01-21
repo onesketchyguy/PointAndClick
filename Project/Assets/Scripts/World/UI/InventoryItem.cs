@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace World.UI
@@ -16,6 +14,8 @@ namespace World.UI
         public WorldObject Item;
 
         private Vector3 scale;
+
+        internal bool canTakeItem;
 
         private void Start()
         {
@@ -43,13 +43,21 @@ namespace World.UI
 
         public void Clicked()
         {
-            if (InteractionManager.objectUsing == Item)
+            if (canTakeItem == false)
             {
-                InteractionManager.objectUsing = null;
+                if (InteractionManager.objectUsing == Item)
+                {
+                    InteractionManager.objectUsing = null;
+                }
+                else
+                {
+                    InteractionManager.objectUsing = Item;
+                }
             }
             else
             {
-                InteractionManager.objectUsing = Item;
+                GameManager.instance.playerInventory.inventoryToDisplay.Add(Item);
+                GameManager.instance.otherInventory.inventoryToDisplay.Remove(Item);
             }
         }
 

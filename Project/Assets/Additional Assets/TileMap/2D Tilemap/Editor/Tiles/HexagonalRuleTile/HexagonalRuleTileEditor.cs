@@ -7,7 +7,6 @@ namespace UnityEditor
     [CanEditMultipleObjects]
     public class HexagonalRuleTileEditor : RuleTileEditor
     {
-
         public HexagonalRuleTile hexTile => target as HexagonalRuleTile;
 
         public override int GetArrowIndex(Vector3Int position)

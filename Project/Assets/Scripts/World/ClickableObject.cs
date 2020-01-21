@@ -1,29 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using World.UI;
 
 namespace World
 {
     public class ClickableObject : MonoBehaviour
     {
-        private Vector3 startScale;
-
         public WorldObject Item;
 
         public SpriteRenderer spriteRenderer;
 
-        private UI.PopupManager popupManager;
+        private ClickedObjectDisplayManager clickedObjectDisplay;
+        private HelpText helpText;
+        private CutSceneManager cutSceneManager;
 
-        private UI.HelpText helpText;
-
+        private Vector3 startScale;
         private float sizeMultiplier = 1.12f;
 
         public string defaultOutPut = "I can't do that...";
 
         public Interaction[] interactions;
 
-        private CutSceneManager cutSceneManager;
+        [Space]
+        public UnityEngine.Events.UnityEvent OnPickupItemEvent;
 
         private void OnValidate()
         {
@@ -48,9 +46,9 @@ namespace World
                 gameObject.name = Item.name;
             }
 
-            popupManager = FindObjectOfType<PopupManager>();
-            helpText = FindObjectOfType<HelpText>();
-            cutSceneManager = FindObjectOfType<CutSceneManager>();
+            clickedObjectDisplay = GameManager.instance.clickedObjectDisplay;
+            helpText = GameManager.instance.helpText;
+            cutSceneManager = GameManager.instance.cutSceneManager;
         }
 
         private void OnMouseOver()
@@ -83,7 +81,7 @@ namespace World
                     return;
                 }
 
-                popupManager.DisplayObject(Item, gameObject);
+                clickedObjectDisplay.DisplayObject(Item, gameObject);
             }
         }
 
@@ -106,10 +104,14 @@ namespace World
             }
 
             if (@object == null)
-
                 cutSceneManager.DisplayMessage(defaultOutPut);
             else
                 cutSceneManager.DisplayMessage(InteractionManager.GetFailedActionOutput(@object, gameObject));
+        }
+
+        private void OnDestroy()
+        {
+            OnPickupItemEvent.Invoke();
         }
     }
 }

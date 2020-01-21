@@ -32,6 +32,7 @@ namespace UnityEditor.Tilemaps
         /// Factor to blend the Color of Tile with its color and this Brush's color
         /// </summary>
         public float m_Blend = 1f;
+
         /// <summary>
         /// Color of the Tile to tint
         /// </summary>

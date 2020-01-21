@@ -12,14 +12,17 @@ namespace UnityEditor.Tilemaps
     public class PrefabBrush : GridBrush
     {
         private const float k_PerlinOffset = 100000f;
+
         /// <summary>
         /// The selection of Prefabs to paint from
         /// </summary>
         public GameObject[] m_Prefabs;
+
         /// <summary>
         /// Factor for distribution of choice of Prefabs to paint
         /// </summary>
         public float m_PerlinScale = 0.5f;
+
         /// <summary>
         /// Anchor Point of the Instantiated Prefab in the cell when painting
         /// </summary>
@@ -42,7 +45,8 @@ namespace UnityEditor.Tilemaps
                 return;
             }
             prev_position = position;
-            if (brushTarget) {
+            if (brushTarget)
+            {
                 prev_brushTarget = brushTarget;
             }
             brushTarget = prev_brushTarget;
@@ -53,7 +57,7 @@ namespace UnityEditor.Tilemaps
 
             int index = Mathf.Clamp(Mathf.FloorToInt(GetPerlinValue(position, m_PerlinScale, k_PerlinOffset) * m_Prefabs.Length), 0, m_Prefabs.Length - 1);
             GameObject prefab = m_Prefabs[index];
-            GameObject instance = (GameObject) PrefabUtility.InstantiatePrefab(prefab);
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
             if (instance != null)
             {
                 Erase(grid, brushTarget, position);
@@ -102,7 +106,7 @@ namespace UnityEditor.Tilemaps
 
         private static float GetPerlinValue(Vector3Int position, float scale, float offset)
         {
-            return Mathf.PerlinNoise((position.x + offset)*scale, (position.y + offset)*scale);
+            return Mathf.PerlinNoise((position.x + offset) * scale, (position.y + offset) * scale);
         }
     }
 

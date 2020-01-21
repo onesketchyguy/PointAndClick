@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEditor;
 
 namespace World
 {
@@ -24,6 +22,12 @@ namespace World
             clickable.Item = null;
 
             go.layer = LayerMask.NameToLayer("Interactable");
+        }
+
+        [MenuItem("Tools/Create trigger event")]
+        public static void CreateTriggerEventObject()
+        {
+            new GameObject("New trigger event", typeof(BoxCollider2D), typeof(ScriptableEvents.TriggerEvent));
         }
     }
 }

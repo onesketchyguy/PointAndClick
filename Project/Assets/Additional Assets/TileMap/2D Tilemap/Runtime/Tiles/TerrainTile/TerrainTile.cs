@@ -1,7 +1,9 @@
 ﻿using System;
 
 #if UNITY_EDITOR
+
 using UnityEditor;
+
 #endif
 
 namespace UnityEngine.Tilemaps
@@ -155,6 +157,7 @@ namespace UnityEngine.Tilemaps
                 case 221:
                 case 253:
                     return Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, -90f), Vector3.one);
+
                 case 16:
                 case 80:
                 case 112:
@@ -166,6 +169,7 @@ namespace UnityEngine.Tilemaps
                 case 245:
                 case 247:
                     return Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, -180f), Vector3.one);
+
                 case 64:
                 case 65:
                 case 193:
@@ -183,6 +187,7 @@ namespace UnityEngine.Tilemaps
     }
 
 #if UNITY_EDITOR
+
     [CustomEditor(typeof(TerrainTile))]
     public class TerrainTileEditor : Editor
     {
@@ -197,7 +202,6 @@ namespace UnityEngine.Tilemaps
             }
         }
 
-
         public override void OnInspectorGUI()
         {
             EditorGUILayout.LabelField("Place sprites shown based on the contents of the sprite.");
@@ -207,26 +211,27 @@ namespace UnityEngine.Tilemaps
             EditorGUIUtility.labelWidth = 210;
 
             EditorGUI.BeginChangeCheck();
-            tile.m_Sprites[0] = (Sprite) EditorGUILayout.ObjectField("Filled", tile.m_Sprites[0], typeof(Sprite), false, null);
-            tile.m_Sprites[1] = (Sprite) EditorGUILayout.ObjectField("Three Sides", tile.m_Sprites[1], typeof(Sprite), false, null);
-            tile.m_Sprites[2] = (Sprite) EditorGUILayout.ObjectField("Two Sides and One Corner", tile.m_Sprites[2], typeof(Sprite), false, null);
-            tile.m_Sprites[3] = (Sprite) EditorGUILayout.ObjectField("Two Adjacent Sides", tile.m_Sprites[3], typeof(Sprite), false, null);
-            tile.m_Sprites[4] = (Sprite) EditorGUILayout.ObjectField("Two Opposite Sides", tile.m_Sprites[4], typeof(Sprite), false, null);
-            tile.m_Sprites[5] = (Sprite) EditorGUILayout.ObjectField("One Side and Two Corners", tile.m_Sprites[5], typeof(Sprite), false, null);
-            tile.m_Sprites[6] = (Sprite) EditorGUILayout.ObjectField("One Side and One Lower Corner", tile.m_Sprites[6], typeof(Sprite), false, null);
-            tile.m_Sprites[7] = (Sprite) EditorGUILayout.ObjectField("One Side and One Upper Corner", tile.m_Sprites[7], typeof(Sprite), false, null);
-            tile.m_Sprites[8] = (Sprite) EditorGUILayout.ObjectField("One Side", tile.m_Sprites[8], typeof(Sprite), false, null);
-            tile.m_Sprites[9] = (Sprite) EditorGUILayout.ObjectField("Four Corners", tile.m_Sprites[9], typeof(Sprite), false, null);
-            tile.m_Sprites[10] = (Sprite) EditorGUILayout.ObjectField("Three Corners", tile.m_Sprites[10], typeof(Sprite), false, null);
-            tile.m_Sprites[11] = (Sprite) EditorGUILayout.ObjectField("Two Adjacent Corners", tile.m_Sprites[11], typeof(Sprite), false, null);
-            tile.m_Sprites[12] = (Sprite) EditorGUILayout.ObjectField("Two Opposite Corners", tile.m_Sprites[12], typeof(Sprite), false, null);
-            tile.m_Sprites[13] = (Sprite) EditorGUILayout.ObjectField("One Corner", tile.m_Sprites[13], typeof(Sprite), false, null);
-            tile.m_Sprites[14] = (Sprite) EditorGUILayout.ObjectField("Empty", tile.m_Sprites[14], typeof(Sprite), false, null);
+            tile.m_Sprites[0] = (Sprite)EditorGUILayout.ObjectField("Filled", tile.m_Sprites[0], typeof(Sprite), false, null);
+            tile.m_Sprites[1] = (Sprite)EditorGUILayout.ObjectField("Three Sides", tile.m_Sprites[1], typeof(Sprite), false, null);
+            tile.m_Sprites[2] = (Sprite)EditorGUILayout.ObjectField("Two Sides and One Corner", tile.m_Sprites[2], typeof(Sprite), false, null);
+            tile.m_Sprites[3] = (Sprite)EditorGUILayout.ObjectField("Two Adjacent Sides", tile.m_Sprites[3], typeof(Sprite), false, null);
+            tile.m_Sprites[4] = (Sprite)EditorGUILayout.ObjectField("Two Opposite Sides", tile.m_Sprites[4], typeof(Sprite), false, null);
+            tile.m_Sprites[5] = (Sprite)EditorGUILayout.ObjectField("One Side and Two Corners", tile.m_Sprites[5], typeof(Sprite), false, null);
+            tile.m_Sprites[6] = (Sprite)EditorGUILayout.ObjectField("One Side and One Lower Corner", tile.m_Sprites[6], typeof(Sprite), false, null);
+            tile.m_Sprites[7] = (Sprite)EditorGUILayout.ObjectField("One Side and One Upper Corner", tile.m_Sprites[7], typeof(Sprite), false, null);
+            tile.m_Sprites[8] = (Sprite)EditorGUILayout.ObjectField("One Side", tile.m_Sprites[8], typeof(Sprite), false, null);
+            tile.m_Sprites[9] = (Sprite)EditorGUILayout.ObjectField("Four Corners", tile.m_Sprites[9], typeof(Sprite), false, null);
+            tile.m_Sprites[10] = (Sprite)EditorGUILayout.ObjectField("Three Corners", tile.m_Sprites[10], typeof(Sprite), false, null);
+            tile.m_Sprites[11] = (Sprite)EditorGUILayout.ObjectField("Two Adjacent Corners", tile.m_Sprites[11], typeof(Sprite), false, null);
+            tile.m_Sprites[12] = (Sprite)EditorGUILayout.ObjectField("Two Opposite Corners", tile.m_Sprites[12], typeof(Sprite), false, null);
+            tile.m_Sprites[13] = (Sprite)EditorGUILayout.ObjectField("One Corner", tile.m_Sprites[13], typeof(Sprite), false, null);
+            tile.m_Sprites[14] = (Sprite)EditorGUILayout.ObjectField("Empty", tile.m_Sprites[14], typeof(Sprite), false, null);
             if (EditorGUI.EndChangeCheck())
                 EditorUtility.SetDirty(tile);
 
             EditorGUIUtility.labelWidth = oldLabelWidth;
         }
     }
+
 #endif
 }

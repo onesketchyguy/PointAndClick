@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace World
 {
@@ -49,9 +47,9 @@ namespace World
                 itemsChangedCallback.Invoke(items);
         }
 
-        public void Remove(WorldObject obj)
+        public void Remove(WorldObject @object)
         {
-            if (InteractionManager.objectUsing == obj)
+            if (InteractionManager.objectUsing == @object)
                 InteractionManager.objectUsing = null;
 
             if (items == null || items.Length == 0)
@@ -70,19 +68,17 @@ namespace World
                     var oldItems = items;
                     items = new WorldObject[items.Length - 1];
 
-                    var index = 0;
-                    for (int i = 0; i < items.Length; i++)
+                    var y = -1;
+                    for (int i = 0; i < oldItems.Length; i++)
                     {
-                        index++;
-                        var item = oldItems[i];
-
-                        if (item.name == obj.name && item.description == obj.description)
+                        if (oldItems[i] == @object)
                         {
-                            // This is the correct item remove this
-                            index--;
+                            continue;
                         }
 
-                        items[i] = oldItems[index];
+                        y++;
+
+                        items[y] = oldItems[i];
                     }
                 }
             }

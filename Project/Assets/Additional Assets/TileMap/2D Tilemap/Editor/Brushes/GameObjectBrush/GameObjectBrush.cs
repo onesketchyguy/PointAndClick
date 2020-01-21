@@ -34,12 +34,16 @@ namespace UnityEditor.Tilemaps
 
         /// <summary>Size of the brush in cells. </summary>
         public Vector3Int size { get { return m_Size; } set { m_Size = value; SizeUpdated(); } }
+
         /// <summary>Pivot of the brush. </summary>
         public Vector3Int pivot { get { return m_Pivot; } set { m_Pivot = value; } }
+
         /// <summary>All the brush cells the brush holds. </summary>
         public BrushCell[] cells { get { return m_Cells; } }
+
         /// <summary>Number of brush cells in the brush.</summary>
         public int cellCount { get { return m_Cells != null ? m_Cells.Length : 0; } }
+
         /// <summary>Whether the brush can change Z Position</summary>
         public bool canChangeZPosition
         {
@@ -264,7 +268,7 @@ namespace UnityEditor.Tilemaps
 
                     if (prefab)
                     {
-                        SetGameObject(brushPosition, (GameObject) prefab);
+                        SetGameObject(brushPosition, (GameObject)prefab);
                     }
                     else
                     {
@@ -354,12 +358,12 @@ namespace UnityEditor.Tilemaps
             pivot = new Vector3Int(newPivotX, pivot.y, pivot.z);
             Matrix4x4 flip = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(-1f, 1f, 1f));
             Quaternion orientation = Quaternion.Euler(0f, 0f, -180f);
-            
+
             foreach (BrushCell cell in m_Cells)
             {
                 Vector3 oldOffset = cell.offset;
                 cell.offset = flip * oldOffset;
-                cell.orientation = cell.orientation*orientation;
+                cell.orientation = cell.orientation * orientation;
             }
         }
 
@@ -485,7 +489,7 @@ namespace UnityEditor.Tilemaps
             int childCount = parent.childCount;
             Vector3 min = grid.LocalToWorld(grid.CellToLocalInterpolated(position));
             Vector3 max = grid.LocalToWorld(grid.CellToLocalInterpolated(position + Vector3Int.one));
-            
+
             // Infinite bounds on Z for 2D convenience
             min = new Vector3(min.x, min.y, float.MinValue);
             max = new Vector3(max.x, max.y, float.MaxValue);
@@ -530,7 +534,7 @@ namespace UnityEditor.Tilemaps
             GameObject instance = null;
             if (PrefabUtility.IsPartOfPrefabAsset(go))
             {
-                instance = (GameObject) PrefabUtility.InstantiatePrefab(go);
+                instance = (GameObject)PrefabUtility.InstantiatePrefab(go);
             }
             else
             {
@@ -584,27 +588,33 @@ namespace UnityEditor.Tilemaps
             /// GameObject to be placed when painting.
             /// </summary>
             public GameObject gameObject { get { return m_GameObject; } set { m_GameObject = value; } }
+
             /// <summary>
             /// Position offset of the GameObject when painted.
             /// </summary>
             public Vector3 offset { get { return m_Offset; } set { m_Offset = value; } }
+
             /// <summary>
             /// Scale of the GameObject when painted.
             /// </summary>
             public Vector3 scale { get { return m_Scale; } set { m_Scale = value; } }
+
             /// <summary>
             /// Orientatio of the GameObject when painted.
             /// </summary>
             public Quaternion orientation { get { return m_Orientation; } set { m_Orientation = value; } }
-            
+
             [SerializeField]
             private GameObject m_GameObject;
+
             [SerializeField]
-            Vector3 m_Offset = Vector3.zero;
+            private Vector3 m_Offset = Vector3.zero;
+
             [SerializeField]
-            Vector3 m_Scale = Vector3.one;
+            private Vector3 m_Scale = Vector3.one;
+
             [SerializeField]
-            Quaternion m_Orientation = Quaternion.identity;
+            private Quaternion m_Orientation = Quaternion.identity;
 
             /// <summary>
             /// Hashes the contents of the brush cell.
@@ -651,7 +661,7 @@ namespace UnityEditor.Tilemaps
 
             if (tool == GridBrushBase.Tool.Paint || tool == GridBrushBase.Tool.Erase)
                 gizmoRect = new BoundsInt(position.min - brush.pivot, brush.size);
-            
+
             base.OnPaintSceneGUI(gridLayout, brushTarget, gizmoRect, tool, executing);
         }
 

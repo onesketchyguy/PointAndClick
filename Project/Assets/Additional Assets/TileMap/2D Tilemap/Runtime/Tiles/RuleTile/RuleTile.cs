@@ -1,7 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
 namespace UnityEngine
@@ -35,10 +35,12 @@ namespace UnityEngine
         /// The Default Sprite set when creating a new Rule.
         /// </summary>
         public Sprite m_DefaultSprite;
+
         /// <summary>
         /// The Default GameObject set when creating a new Rule.
         /// </summary>
         public GameObject m_DefaultGameObject;
+
         /// <summary>
         /// The Default Collider Type set when creating a new Rule.
         /// </summary>
@@ -55,30 +57,37 @@ namespace UnityEngine
         public class TilingRuleOutput
         {
             public int m_Id;
+
             /// <summary>
             /// The output Sprites for this Rule.
             /// </summary>
             public Sprite[] m_Sprites = new Sprite[1];
+
             /// <summary>
             /// The output GameObject for this Rule.
             /// </summary>
             public GameObject m_GameObject;
+
             /// <summary>
             /// The output Animation Speed for this Rule.
             /// </summary>
             public float m_AnimationSpeed = 1f;
+
             /// <summary>
             /// The perlin scale factor for this Rule.
             /// </summary>
             public float m_PerlinScale = 0.5f;
+
             /// <summary>
             /// The output type for this Rule.
             /// </summary>
             public OutputSprite m_Output = OutputSprite.Single;
+
             /// <summary>
             /// The output Collider Type for this Rule.
             /// </summary>
             public Tile.ColliderType m_ColliderType = Tile.ColliderType.Sprite;
+
             /// <summary>
             /// The randomized transform output for this Rule.
             /// </summary>
@@ -94,6 +103,7 @@ namespace UnityEngine
                 /// If not, the rule will fail.
                 /// </summary>
                 public const int This = 1;
+
                 /// <summary>
                 /// The Rule Tile will check if the contents of the cell in that direction is not an instance of this Rule Tile.
                 /// If it is, the rule will fail.
@@ -110,18 +120,22 @@ namespace UnityEngine
                 /// The Rule Tile will match Tiles exactly as laid out in its neighbors.
                 /// </summary>
                 Fixed,
+
                 /// <summary>
                 /// The Rule Tile will rotate and match its neighbors.
                 /// </summary>
                 Rotated,
+
                 /// <summary>
                 /// The Rule Tile will mirror in the X axis and match its neighbors.
                 /// </summary>
                 MirrorX,
+
                 /// <summary>
                 /// The Rule Tile will mirror in the Y axis and match its neighbors.
                 /// </summary>
                 MirrorY,
+
                 /// <summary>
                 /// The Rule Tile will mirror in the X or Y axis and match its neighbors.
                 /// </summary>
@@ -137,10 +151,12 @@ namespace UnityEngine
                 /// A Single Sprite will be output.
                 /// </summary>
                 Single,
+
                 /// <summary>
                 /// A Random Sprite will be output.
                 /// </summary>
                 Random,
+
                 /// <summary>
                 /// A Sprite Animation will be output.
                 /// </summary>
@@ -155,6 +171,7 @@ namespace UnityEngine
             /// The matching Rule conditions for each of its neighboring Tiles.
             /// </summary>
             public List<int> m_Neighbors = new List<int>();
+
             /// <summary>
             /// * Preset this list to RuleTile backward compatible, but not support for HexagonalRuleTile backward compatible.
             /// </summary>
@@ -169,6 +186,7 @@ namespace UnityEngine
                 new Vector3Int(0, -1, 0),
                 new Vector3Int(1, -1, 0),
             };
+
             /// <summary>
             /// The transform matching Rule for this Rule.
             /// </summary>
@@ -346,6 +364,7 @@ namespace UnityEngine
                         case TilingRule.OutputSprite.Animation:
                             tileData.sprite = rule.m_Sprites[0];
                             break;
+
                         case TilingRule.OutputSprite.Random:
                             int index = Mathf.Clamp(Mathf.FloorToInt(GetPerlinValue(position, rule.m_PerlinScale, 100000f) * rule.m_Sprites.Length), 0, rule.m_Sprites.Length - 1);
                             tileData.sprite = rule.m_Sprites[index];
@@ -373,10 +392,10 @@ namespace UnityEngine
             return Mathf.PerlinNoise((position.x + offset) * scale, (position.y + offset) * scale);
         }
 
-        static Dictionary<Tilemap, KeyValuePair<HashSet<TileBase>, HashSet<Vector3Int>>> m_CacheTilemapsNeighborPositions = new Dictionary<Tilemap, KeyValuePair<HashSet<TileBase>, HashSet<Vector3Int>>>();
-        static TileBase[] m_AllocatedUsedTileArr = new TileBase[0];
+        private static Dictionary<Tilemap, KeyValuePair<HashSet<TileBase>, HashSet<Vector3Int>>> m_CacheTilemapsNeighborPositions = new Dictionary<Tilemap, KeyValuePair<HashSet<TileBase>, HashSet<Vector3Int>>>();
+        private static TileBase[] m_AllocatedUsedTileArr = new TileBase[0];
 
-        static bool IsTilemapUsedTilesChange(Tilemap tilemap)
+        private static bool IsTilemapUsedTilesChange(Tilemap tilemap)
         {
             if (!m_CacheTilemapsNeighborPositions.ContainsKey(tilemap))
                 return true;
@@ -401,7 +420,8 @@ namespace UnityEngine
 
             return false;
         }
-        static void CachingTilemapNeighborPositions(Tilemap tilemap)
+
+        private static void CachingTilemapNeighborPositions(Tilemap tilemap)
         {
             int usedTileCount = tilemap.GetUsedTilesCount();
             HashSet<TileBase> usedTiles = new HashSet<TileBase>();
@@ -430,7 +450,8 @@ namespace UnityEngine
 
             m_CacheTilemapsNeighborPositions[tilemap] = new KeyValuePair<HashSet<TileBase>, HashSet<Vector3Int>>(usedTiles, neighborPositions);
         }
-        static void ReleaseDestroyedTilemapCacheData()
+
+        private static void ReleaseDestroyedTilemapCacheData()
         {
             m_CacheTilemapsNeighborPositions = m_CacheTilemapsNeighborPositions
                 .Where(data => data.Key != null)
@@ -580,10 +601,13 @@ namespace UnityEngine
             {
                 case TilingRule.Transform.MirrorXY:
                     return original * Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Math.Abs(perlin - 0.5) > 0.25 ? 1f : -1f, perlin < 0.5 ? 1f : -1f, 1f));
+
                 case TilingRule.Transform.MirrorX:
                     return original * Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(perlin < 0.5 ? 1f : -1f, 1f, 1f));
+
                 case TilingRule.Transform.MirrorY:
                     return original * Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(1f, perlin < 0.5 ? 1f : -1f, 1f));
+
                 case TilingRule.Transform.Rotated:
                     int angle = Mathf.Clamp(Mathf.FloorToInt(perlin * m_RotationCount), 0, m_RotationCount - 1) * m_RotationAngle;
                     return Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, -angle), Vector3.one);
@@ -665,7 +689,7 @@ namespace UnityEngine
         }
 
         /// <summary>
-        /// Gets a rotated position given its original position and the rotation in degrees. 
+        /// Gets a rotated position given its original position and the rotation in degrees.
         /// </summary>
         /// <param name="position">Original position of Tile.</param>
         /// <param name="rotation">Rotation in degrees.</param>
@@ -676,10 +700,13 @@ namespace UnityEngine
             {
                 case 0:
                     return position;
+
                 case 90:
                     return new Vector3Int(position.y, -position.x, 0);
+
                 case 180:
                     return new Vector3Int(-position.x, -position.y, 0);
+
                 case 270:
                     return new Vector3Int(-position.y, position.x, 0);
             }
