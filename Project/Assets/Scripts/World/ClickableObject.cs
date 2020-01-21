@@ -53,6 +53,8 @@ namespace World
 
         private void OnMouseOver()
         {
+            if (GameManager.inMenu) return;
+
             transform.localScale = startScale * sizeMultiplier;
 
             if (Item != null)
@@ -62,12 +64,16 @@ namespace World
 
         private void OnMouseExit()
         {
+            if (GameManager.inMenu) return;
+
             transform.localScale = startScale;
             helpText.SetSelected(null);
         }
 
         private void OnMouseUpAsButton()
         {
+            if (GameManager.inMenu) return;
+
             if (Item == null)
             {
                 Use(InteractionManager.objectUsing);
@@ -81,7 +87,12 @@ namespace World
                     return;
                 }
 
-                clickedObjectDisplay.DisplayObject(Item, gameObject);
+                if (Item.canBePickedUp)
+                    clickedObjectDisplay.DisplayObject(Item, gameObject);
+                else
+                {
+                    cutSceneManager.DisplayMessage(Item.description);
+                }
             }
         }
 

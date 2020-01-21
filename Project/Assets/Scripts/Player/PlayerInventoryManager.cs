@@ -15,7 +15,7 @@ namespace Player
         {
             arm.SetActive(usingCandle);
 
-            usingCandle = contains(candle);
+            usingCandle = contains(candle) && InteractionManager.objectUsing == candle;
         }
     }
 }

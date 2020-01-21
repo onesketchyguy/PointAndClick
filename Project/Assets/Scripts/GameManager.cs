@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
     public InventoryDisplay playerInventory;
     public InventoryDisplay otherInventory;
 
+    [Space]
+    public World.CombinationLock.CombinationChecker combinationLock;
+
+    public static bool inMenu;
+
     private void Awake()
     {
         instance = this;
@@ -24,5 +29,13 @@ public class GameManager : MonoBehaviour
 
         otherInventory.Take = true;
         playerInventory.Take = false;
+    }
+
+    private void Update()
+    {
+        if (inMenu)
+        {
+            helpText.SetText("");
+        }
     }
 }

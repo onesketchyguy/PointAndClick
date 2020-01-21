@@ -7,16 +7,18 @@ namespace World.UI
     public class PortaitManager : MonoBehaviour
     {
         public Text textObject;
-        public Image portrait;
 
         public void DisplayMessage(string message)
         {
+            StopAllCoroutines();
             StartCoroutine(DisplayText(message));
         }
 
         public IEnumerator DisplayText(string message)
         {
             textObject.text = "";
+
+            float time = Time.time;
 
             yield return null;
 
@@ -26,8 +28,14 @@ namespace World.UI
             {
                 textObject.text += _chars[i];
 
-                yield return null;
+                time += Time.deltaTime * 15;
+
+                yield return new WaitForSecondsRealtime(Time.deltaTime);
             }
+
+            yield return new WaitForSecondsRealtime(time);
+
+            GameManager.instance.cutSceneManager.HideMessage();
         }
     }
 }

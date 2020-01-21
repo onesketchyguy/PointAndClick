@@ -13,6 +13,8 @@ namespace World
 
         public bool locked;
 
+        public void SetLocked(bool val) => locked = val;
+
         private InventoryDisplay inventoryDisplay;
 
         private void Start()
@@ -36,21 +38,8 @@ namespace World
 
         private void OnMouseOver()
         {
-            transform.localScale = startScale * sizeMultiplier;
+            if (GameManager.inMenu) return;
 
-            helpText.SetText($"{gameObject.name} {(locked ? "(LOCKED)" : "")}");
-        }
-
-        private void OnMouseExit()
-        {
-            transform.localScale = startScale;
-            helpText.SetSelected(null);
-        }
-
-        private bool open;
-
-        private void OnMouseUpAsButton()
-        {
             if (items == null || items.Length == 0)
             {
                 // Remove this component
@@ -59,10 +48,31 @@ namespace World
                 return;
             }
 
+            transform.localScale = startScale * sizeMultiplier;
+
+            helpText.SetText($"{gameObject.name} {(locked ? "(LOCKED)" : "")}");
+        }
+
+        private void OnMouseExit()
+        {
+            if (GameManager.inMenu) return;
+
+            transform.localScale = startScale;
+            helpText.SetSelected(null);
+        }
+
+        private bool open;
+
+        private void OnMouseUpAsButton()
+        {
+            if (GameManager.inMenu) return;
+
             if (locked)
             {
                 // Do nothing
-                cutSceneManager.DisplayMessage("It's locked.");
+                //cutSceneManager.DisplayMessage("It's locked.");
+
+                GetComponent<CombinationLock.CombinationLock>().OpenMenu();
             }
             else
             {
