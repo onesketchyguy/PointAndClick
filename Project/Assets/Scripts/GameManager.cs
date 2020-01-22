@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using World.UI;
 
 public class GameManager : MonoBehaviour
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public static bool inMenu;
 
+    private static string onLoadLevelMessage = string.Empty;
+
     private void Awake()
     {
         instance = this;
@@ -29,6 +32,11 @@ public class GameManager : MonoBehaviour
 
         otherInventory.Take = true;
         playerInventory.Take = false;
+
+        if (onLoadLevelMessage != string.Empty)
+        {
+            Invoke(nameof(DisplayMessage), 2 * Time.deltaTime);
+        }
     }
 
     private void Update()
@@ -37,5 +45,26 @@ public class GameManager : MonoBehaviour
         {
             helpText.SetText("");
         }
+    }
+
+    private void DisplayMessage()
+    {
+        cutSceneManager.DisplayMessage(onLoadLevelMessage);
+
+        onLoadLevelMessage = string.Empty;
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        var scene = SceneManager.GetSceneByName(sceneName).buildIndex;
+
+        Loading.LoadingScreen.levelToLoad = scene;
+
+        SceneManager.LoadScene("LoadingScreen");
+    }
+
+    public void AddLoadMessageToSceneChange(string message)
+    {
+        onLoadLevelMessage = message;
     }
 }

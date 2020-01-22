@@ -26,7 +26,11 @@ namespace World.CombinationLock
         {
             menu.gameObject.SetActive(false);
 
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitUntil(() => menu.gameObject.gameObject.activeSelf == false);
+
+            yield return new WaitForSecondsRealtime(Time.deltaTime);
+
+            GameManager.instance.cutSceneManager.DisplayMessage("Got it!");
 
             OnOpenenedEvent.Invoke();
         }

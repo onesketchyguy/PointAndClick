@@ -42,6 +42,17 @@ namespace World
 
             if (Item != null && spriteRenderer != null)
             {
+                if (Player.PlayerInventoryManager._items != null && Player.PlayerInventoryManager._items.Length > 0)
+                    foreach (var item in Player.PlayerInventoryManager._items)
+                    {
+                        if (item == Item && Item.canBePickedUp)
+                        {
+                            Destroy(gameObject);
+
+                            return;
+                        }
+                    }
+
                 spriteRenderer.sprite = Item.sprite;
                 gameObject.name = Item.name;
             }

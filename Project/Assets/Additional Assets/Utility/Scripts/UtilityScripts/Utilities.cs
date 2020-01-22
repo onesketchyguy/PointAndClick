@@ -13,6 +13,8 @@ namespace Utility
         /// <returns></returns>
         public static Vector3 GetMousePosition()
         {
+            if (Camera.main == null) return Vector3.zero;
+
             Vector3 moPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
 
             return moPos;
