@@ -16,7 +16,7 @@ namespace World.UI
             HideObject();
         }
 
-        public void DisplayObject(World.WorldObject obj, GameObject sender)
+        public void DisplayObject(WorldObject obj, GameObject sender)
         {
             clickedObjectImage.sprite = obj.sprite;
             clickedObjectText.text = $"{obj.name}\n" +

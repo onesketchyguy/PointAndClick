@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Utility.Tools
@@ -7,22 +8,31 @@ namespace Utility.Tools
     {
         private void OnPostprocessTexture(Texture2D texture)
         {
+            var spriteScales = new Dictionary<string, byte>();
+            spriteScales.Add("64", 64);
+            spriteScales.Add("32", 32);
+            spriteScales.Add("12", 12);
+            spriteScales.Add("8", 8);
+
             //Convert the asset directory to lowercase for easier reading.
             string lowerCaseAssetPath = assetPath.ToLower();
 
-            //Find the sprites folder. If I can't find it it will return -1.
-            bool isInSpritesDirectory = lowerCaseAssetPath.IndexOf("/sprites/") != -1;
-
-            //Follow the sprite in the directory.
-            if (isInSpritesDirectory)
+            foreach (var item in spriteScales)
             {
-                TextureImporter textureImporter = (TextureImporter)assetImporter;
+                //Find the sprites folder. If I can't find it it will return -1.
+                bool isInSpritesDirectory = lowerCaseAssetPath.IndexOf($"/sprites/{item.Key}/") != -1;
 
-                textureImporter.textureCompression = TextureImporterCompression.Uncompressed;
+                //Follow the sprite in the directory.
+                if (isInSpritesDirectory)
+                {
+                    TextureImporter textureImporter = (TextureImporter)assetImporter;
 
-                textureImporter.filterMode = FilterMode.Point;
+                    textureImporter.textureCompression = TextureImporterCompression.Uncompressed;
 
-                textureImporter.spritePixelsPerUnit = 32;
+                    textureImporter.textureType = TextureImporterType.Sprite;
+                    textureImporter.filterMode = FilterMode.Point;
+                    textureImporter.spritePixelsPerUnit = item.Value;
+                }
             }
         }
     }
