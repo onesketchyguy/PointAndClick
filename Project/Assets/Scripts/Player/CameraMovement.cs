@@ -11,6 +11,14 @@ public class CameraMovement : MonoBehaviour
 
     public float speed = 7.5f;
 
+    private void Start()
+    {
+        if (objectFollowing == null)
+        {
+            objectFollowing = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+    }
+
     private void Update()
     {
         if (objectFollowing != null)

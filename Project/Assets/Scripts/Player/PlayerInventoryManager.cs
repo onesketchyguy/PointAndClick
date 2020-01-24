@@ -20,7 +20,8 @@ namespace Player
                 items = _items;
             }
 
-            itemsChangedCallback.Invoke(_items);
+            if (itemsChangedCallback != null)
+                itemsChangedCallback.Invoke(_items);
             itemsChangedCallback += UpdateItems;
         }
 

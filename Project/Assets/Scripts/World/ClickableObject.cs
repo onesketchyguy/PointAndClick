@@ -23,6 +23,14 @@ namespace World
         [Space]
         public UnityEngine.Events.UnityEvent OnPickupItemEvent;
 
+        private bool dontRead
+        {
+            get
+            {
+                return (GameManager.inMenu || enabled == false);
+            }
+        }
+
         private void OnValidate()
         {
             if (Item != null && spriteRenderer != null)
@@ -64,7 +72,7 @@ namespace World
 
         private void OnMouseOver()
         {
-            if (GameManager.inMenu) return;
+            if (dontRead) return;
 
             transform.localScale = startScale * sizeMultiplier;
 
@@ -75,15 +83,13 @@ namespace World
 
         private void OnMouseExit()
         {
-            if (GameManager.inMenu) return;
-
             transform.localScale = startScale;
             helpText.SetSelected(null);
         }
 
         private void OnMouseUpAsButton()
         {
-            if (GameManager.inMenu) return;
+            if (dontRead) return;
 
             if (Item == null)
             {
@@ -114,12 +120,14 @@ namespace World
             {
                 if (interactions[i].objectUsed == @object)
                 {
-                    interactions[i].Event.Invoke();
-
                     var output = interactions[i].GetOutput();
 
                     if (output != string.Empty)
+                    {
                         cutSceneManager.DisplayMessage(output);
+                    }
+
+                    interactions[i].Event.Invoke();
 
                     return;
                 }

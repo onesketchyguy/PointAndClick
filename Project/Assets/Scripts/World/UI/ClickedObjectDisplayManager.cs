@@ -23,16 +23,21 @@ namespace World.UI
                                      $"{obj.description}";
 
             clickedObjectDisplay.SetActive(true);
-            clickedObjectButton.gameObject.SetActive(obj.canBePickedUp);
+            clickedObjectButton.enabled = obj.canBePickedUp;
             clickedObjectButton.onClick.AddListener(() =>
             {
-                var player = GameObject.Find("Player");
-                player.GetComponent<Inventory>().Add(obj);
-
-                Destroy(sender);
-
-                HideObject();
+                PickUpItem(obj, sender);
             });
+        }
+
+        private void PickUpItem(WorldObject obj, GameObject sender)
+        {
+            var player = GameObject.Find("Player");
+            player.GetComponent<Inventory>().Add(obj);
+            clickedObjectButton.enabled = false;
+
+            Destroy(sender);
+            Invoke(nameof(HideObject), 0.6f);
         }
 
         public void HideObject()

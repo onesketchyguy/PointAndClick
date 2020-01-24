@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace World.UI
@@ -26,6 +27,11 @@ namespace World.UI
 
         public void SetText(string n_text)
         {
+            if (n_text.Contains("//"))
+            {
+                n_text = n_text.Split('/').FirstOrDefault();
+            }
+
             textObject.text = n_text;
         }
 

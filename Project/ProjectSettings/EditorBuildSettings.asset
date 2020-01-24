@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
     guid: 0b52d5cee75b8e746812044d86c81c58
+  - enabled: 1
+    path: Assets/Scenes/Rooms/00Garden.unity
+    guid: a338cc1977d9a7942909c8022cd3706d
+  - enabled: 1
+    path: Assets/Scenes/Rooms/01GrandLobby.unity
+    guid: f76cf62e1233b7d4ebd62f37dd5e3bb2
   m_configObjects: {}

@@ -11,6 +11,11 @@ namespace World.Effects
 
         private void OnValidate()
         {
+            if (follow == null)
+            {
+                follow = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+
             if (follow != null)
                 transform.position = (Vector3)offset + follow.position;
         }

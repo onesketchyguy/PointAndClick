@@ -9,8 +9,6 @@ namespace World.Effects
         private float distanceFromCamera;
         private float currentDistance;
 
-        public float scale = 0;
-
         private void Start()
         {
             distanceFromCamera = transform.position.y - Utility.Utilities.ScreenMin.y;
@@ -20,7 +18,7 @@ namespace World.Effects
         {
             currentDistance = transform.position.y - Utility.Utilities.ScreenMin.y;
 
-            scale = 1 - ((currentDistance - distanceFromCamera) / currentDistance);
+            var scale = 1 - ((currentDistance - distanceFromCamera) / currentDistance);
 
             var oldscale = transform.localScale * scale;
 

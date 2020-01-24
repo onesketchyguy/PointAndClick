@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
         {
             helpText.SetText("");
         }
+
+        if (playerInventory.inventoryToDisplay == null)
+        {
+            playerInventory.Initialize(FindObjectOfType<Player.PlayerInventoryManager>());
+        }
     }
 
     private void DisplayMessage()
