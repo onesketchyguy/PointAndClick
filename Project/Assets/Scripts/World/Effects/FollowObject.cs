@@ -13,7 +13,9 @@ namespace World.Effects
         {
             if (follow == null)
             {
-                follow = GameObject.FindGameObjectWithTag("Player").transform;
+                var go = GameObject.FindGameObjectWithTag("Player");
+
+                if (go != null) follow = go.transform;
             }
 
             if (follow != null)
