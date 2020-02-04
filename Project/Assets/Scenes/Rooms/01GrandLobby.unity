@@ -989,7 +989,7 @@ GameObject:
   - component: {fileID: 1361047440}
   - component: {fileID: 1361047439}
   m_Layer: 8
-  m_Name: Dark doorway// Art room entrance
+  m_Name: Dark doorway// Music room entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1048,7 +1048,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 06ArtRoom
+            m_StringArgument: 04MusicRoom
             m_BoolArgument: 0
           m_CallState: 2
     objectUsed: {fileID: 11400000, guid: c44a6bef868167748bb6009199758ec9, type: 2}
@@ -1175,7 +1175,7 @@ GameObject:
   - component: {fileID: 1614631455}
   - component: {fileID: 1614631454}
   m_Layer: 8
-  m_Name: Dark doorway// Kitchen entrance
+  m_Name: Dark doorway// Hall way entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1234,7 +1234,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 02Kitchen
+            m_StringArgument: Hallway
             m_BoolArgument: 0
           m_CallState: 2
     objectUsed: {fileID: 11400000, guid: c44a6bef868167748bb6009199758ec9, type: 2}
@@ -1250,12 +1250,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614631453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5, y: -3, z: 0}
+  m_LocalPosition: {x: 15.5, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1826338336}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1694585343
 GameObject:
@@ -1554,7 +1554,7 @@ GameObject:
   - component: {fileID: 2004104885}
   - component: {fileID: 2004104884}
   m_Layer: 8
-  m_Name: Dark doorway//Dining room entrance
+  m_Name: Dark doorway// Dining room entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1629,12 +1629,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004104883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.5, y: -3, z: 0}
+  m_LocalPosition: {x: 7.5, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 386980554}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2021481016
 GameObject:
