@@ -6,15 +6,60 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/LoadingScreen.unity
-    guid: 0b52d5cee75b8e746812044d86c81c58
-  - enabled: 1
     path: Assets/Scenes/Rooms/00Garden.unity
     guid: a338cc1977d9a7942909c8022cd3706d
   - enabled: 1
     path: Assets/Scenes/Rooms/01GrandLobby.unity
     guid: f76cf62e1233b7d4ebd62f37dd5e3bb2
+  - enabled: 1
+    path: Assets/Scenes/Rooms/02Kitchen.unity
+    guid: 4745fafd2fa76ed49995a80afc2ee811
+  - enabled: 1
+    path: Assets/Scenes/Rooms/03DiningRoom.unity
+    guid: 90b3a5dadffd7bf4e9443a1589eea307
+  - enabled: 1
+    path: Assets/Scenes/Rooms/04MusicRoom.unity
+    guid: 26bc352efd370f446bda067f3d463284
+  - enabled: 1
+    path: Assets/Scenes/Rooms/05WineCellar.unity
+    guid: 293ebdfe34ca1d040a6dfcef5cec689e
+  - enabled: 1
+    path: Assets/Scenes/Rooms/06ArtRoom.unity
+    guid: 68c778eeadafb78448e2f03da264da00
+  - enabled: 1
+    path: Assets/Scenes/Rooms/07BedRoom.unity
+    guid: ee0ab69d73e4f4b4ea8b5509ebc6f3eb
+  - enabled: 1
+    path: Assets/Scenes/Rooms/08BedRoom2.unity
+    guid: a73e4dfc6d3cb844eb393d21565c3ff6
+  - enabled: 1
+    path: Assets/Scenes/Rooms/09BabyRoom.unity
+    guid: 8ff241852a053a0458eadc5ebcae7f12
+  - enabled: 1
+    path: Assets/Scenes/Rooms/10Office.unity
+    guid: 007d4c264e394334f8824eb80f53b2a9
+  - enabled: 1
+    path: Assets/Scenes/Rooms/11Library.unity
+    guid: bf222836bb06f3449a29ebd2e74dc851
+  - enabled: 1
+    path: Assets/Scenes/Rooms/12LivingRoom.unity
+    guid: ceff0ff01d7467f4db5e037007326985
+  - enabled: 1
+    path: Assets/Scenes/Rooms/13SummoningRoom.unity
+    guid: 4a2fe84cd4f0b5a409cfd3aa1ba0adba
+  - enabled: 1
+    path: Assets/Scenes/Rooms/14FamilyTomb.unity
+    guid: 07b08b1de4d15b848a065398adfdaacb
+  - enabled: 1
+    path: Assets/Scenes/FirstStoryHallway.unity
+    guid: 784db0f290f44f345bf4f596dfface93
+  - enabled: 1
+    path: Assets/Scenes/SecondStoryHallway.unity
+    guid: 06b7e9ce7dcdc2a408da225b508c647b
+  - enabled: 1
+    path: Assets/Scenes/LoadingScreen.unity
+    guid: 0b52d5cee75b8e746812044d86c81c58
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
         {
             Invoke(nameof(DisplayMessage), 2 * Time.deltaTime);
         }
+
+        if (GetComponent<Canvas>())
+            GetComponent<Canvas>().worldCamera = Camera.main;
     }
 
     private void Update()
@@ -61,11 +64,29 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        var scene = SceneManager.GetSceneByName(sceneName).buildIndex;
+        var index = -1;
 
-        Loading.LoadingScreen.levelToLoad = scene;
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            var scene = SceneManager.GetSceneAt(i).name;
 
-        SceneManager.LoadScene("LoadingScreen");
+            Debug.Log(scene);
+
+            if (scene.ToLower() == sceneName.ToLower())
+            {
+                index = i;
+                break;
+            }
+        }
+
+        //var scene = SceneManager.GetSceneByName(sceneName).buildIndex;
+
+        Debug.Log(index);
+
+        Loading.LoadingScreen.levelToLoad = index;
+
+        if (index > 0)
+            SceneManager.LoadScene("LoadingScreen");
     }
 
     public void AddLoadMessageToSceneChange(string message)

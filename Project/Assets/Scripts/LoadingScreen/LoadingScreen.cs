@@ -17,6 +17,12 @@ namespace Loading
             {
                 Load(levelToLoad);
             }
+            else
+            {
+                Debug.LogError("Build index invalid!");
+
+                Load(0);
+            }
 
             door.SetActive(false);
         }
@@ -45,6 +51,7 @@ namespace Loading
             {
                 // do nothing
                 yield return null;
+                Debug.Log($"Loading {SceneManager.GetSceneAt(index).name}...{loadingOperation.progress * 100}%");
             }
 
             sceneTryingToLoad = SceneManager.GetSceneByBuildIndex(index);

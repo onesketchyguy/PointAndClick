@@ -38,7 +38,8 @@ namespace World.UI
 
         private void OnDestroy()
         {
-            helpTextManager.SetSelected(null);
+            if (helpTextManager != null)
+                helpTextManager.SetSelected(null);
             InteractionManager.onUsingUpdate -= UpdateThis;
         }
 

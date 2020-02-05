@@ -1935,7 +1935,7 @@ GameObject:
   - component: {fileID: 2085206736}
   - component: {fileID: 2085206735}
   m_Layer: 8
-  m_Name: Dark doorway// To unknown
+  m_Name: Dark doorway// To living room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1994,7 +1994,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 02Kitchen
+            m_StringArgument: 12LivingRoom
             m_BoolArgument: 0
           m_CallState: 2
     objectUsed: {fileID: 11400000, guid: c44a6bef868167748bb6009199758ec9, type: 2}
