@@ -49,9 +49,8 @@ namespace Loading
 
             while (loadingOperation.progress < 0.9f)
             {
-                // do nothing
                 yield return null;
-                Debug.Log($"Loading {SceneManager.GetSceneAt(index).name}...{loadingOperation.progress * 100}%");
+                //Debug.Log($"Loading {SceneManager.GetSceneAt(index).name}...{(loadingOperation.progress * 100) + 10}%");
             }
 
             sceneTryingToLoad = SceneManager.GetSceneByBuildIndex(index);

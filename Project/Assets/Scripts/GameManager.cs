@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public InventoryDisplay playerInventory;
     public InventoryDisplay otherInventory;
 
+    private Player.PlayerInventoryManager playerInventoryManager;
+
     [Space]
     public World.CombinationLock.CombinationChecker combinationLock;
 
@@ -22,9 +24,16 @@ public class GameManager : MonoBehaviour
 
     private static string onLoadLevelMessage = string.Empty;
 
+    [Space]
+    public Canvas worldCanvas;
+
+    public static string[] scenes;
+
     private void Awake()
     {
         instance = this;
+
+        playerInventoryManager = FindObjectOfType<Player.PlayerInventoryManager>();
 
         clickedObjectDisplay = FindObjectOfType<ClickedObjectDisplayManager>();
         helpText = FindObjectOfType<HelpText>();
@@ -32,14 +41,28 @@ public class GameManager : MonoBehaviour
 
         otherInventory.Take = true;
         playerInventory.Take = false;
+        playerInventory.Initialize(playerInventoryManager);
 
         if (onLoadLevelMessage != string.Empty)
         {
             Invoke(nameof(DisplayMessage), 2 * Time.deltaTime);
         }
 
-        if (GetComponent<Canvas>())
-            GetComponent<Canvas>().worldCamera = Camera.main;
+        if (GetComponent<Canvas>() && worldCanvas == null)
+            worldCanvas = GetComponent<Canvas>();
+
+        if (scenes == null || scenes.Length <= 0)
+        {
+            scenes = new string[SceneManager.sceneCountInBuildSettings];
+
+            for (int index = 0; index < SceneManager.sceneCountInBuildSettings; index++)
+            {
+                var path = SceneUtility.GetScenePathByBuildIndex(index);
+                var sceneName = System.IO.Path.GetFileNameWithoutExtension(path);
+
+                scenes[index] = sceneName;
+            }
+        }
     }
 
     private void Update()
@@ -49,9 +72,9 @@ public class GameManager : MonoBehaviour
             helpText.SetText("");
         }
 
-        if (playerInventory.inventoryToDisplay == null)
+        if (worldCanvas != null)
         {
-            playerInventory.Initialize(FindObjectOfType<Player.PlayerInventoryManager>());
+            worldCanvas.worldCamera = Camera.main;
         }
     }
 
@@ -64,29 +87,34 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        var index = -1;
+        bool success = false;
 
-        for (int i = 0; i < SceneManager.sceneCount; i++)
+        for (int index = 0; index < scenes.Length; index++)
         {
-            var scene = SceneManager.GetSceneAt(i).name;
+            var name = scenes[index];
 
-            Debug.Log(scene);
-
-            if (scene.ToLower() == sceneName.ToLower())
+            if (name.ToLower().Contains(sceneName.ToLower()))
             {
-                index = i;
+                Loading.LoadingScreen.levelToLoad = index;
+
+                Debug.Log($"Loading Scene: {name}");
+
+                SceneManager.LoadScene("LoadingScreen");
+
+                success = true;
                 break;
             }
         }
 
-        //var scene = SceneManager.GetSceneByName(sceneName).buildIndex;
+        if (!success)
+            Debug.LogError($"Could not load level: {sceneName}.");
+    }
 
-        Debug.Log(index);
+    public void LoadScene(int buildIndex)
+    {
+        Loading.LoadingScreen.levelToLoad = buildIndex;
 
-        Loading.LoadingScreen.levelToLoad = index;
-
-        if (index > 0)
-            SceneManager.LoadScene("LoadingScreen");
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void AddLoadMessageToSceneChange(string message)

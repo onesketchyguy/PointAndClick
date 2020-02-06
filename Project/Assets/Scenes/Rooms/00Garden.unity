@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -665,6 +665,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9204298135022103873, guid: 853d959efca60d04ba109c6233ed1c29,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31.89177
+      objectReference: {fileID: 0}
     - target: {fileID: 9204298136009832434, guid: 853d959efca60d04ba109c6233ed1c29,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -770,6 +775,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9204298136009832437, guid: 853d959efca60d04ba109c6233ed1c29,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 645713254}
     - target: {fileID: 9204298136009832438, guid: 853d959efca60d04ba109c6233ed1c29,
         type: 3}
       propertyPath: m_Name
@@ -777,6 +787,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 853d959efca60d04ba109c6233ed1c29, type: 3}
+--- !u!20 &645713254 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4657065387978875793, guid: f6ccded23740d544b846f763bd0c1d6b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1021434157}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &814895919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,11 +1495,11 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 2045856308}
           m_MethodName: LoadScene
-          m_Mode: 5
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 01GrandLobby
             m_BoolArgument: 0

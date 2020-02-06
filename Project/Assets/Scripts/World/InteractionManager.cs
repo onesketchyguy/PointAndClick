@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace World
@@ -23,6 +24,8 @@ namespace World
                 _object = value;
             }
         }
+
+        public static List<WorldObject> canHoldWhileInteracting = new List<WorldObject>();
 
         public delegate void UsingUpdated(WorldObject objectUsing);
 

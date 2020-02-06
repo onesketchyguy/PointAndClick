@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -120,18 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &101740584 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4657065387978875759, guid: f6ccded23740d544b846f763bd0c1d6b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4657065387887352814}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 919bc0fffb6b1c847bbc7f7b038c8c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &250442159
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +323,7 @@ MonoBehaviour:
   - Event:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 101740584}
+        - m_Target: {fileID: 0}
           m_MethodName: LoadScene
           m_Mode: 5
           m_Arguments:
@@ -910,7 +898,7 @@ MonoBehaviour:
   - Event:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 101740584}
+        - m_Target: {fileID: 1884445875}
           m_MethodName: LoadScene
           m_Mode: 5
           m_Arguments:
@@ -918,7 +906,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 00Garden
+            m_StringArgument: Garden
             m_BoolArgument: 0
           m_CallState: 2
     objectUsed: {fileID: 11400000, guid: c44a6bef868167748bb6009199758ec9, type: 2}
@@ -1214,15 +1202,15 @@ MonoBehaviour:
   - Event:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 101740584}
+        - m_Target: {fileID: 1884445875}
           m_MethodName: LoadScene
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 3
             m_FloatArgument: 0
-            m_StringArgument: 04MusicRoom
+            m_StringArgument: MusicRoom
             m_BoolArgument: 0
           m_CallState: 2
     objectUsed: {fileID: 11400000, guid: c44a6bef868167748bb6009199758ec9, type: 2}
@@ -1400,13 +1388,13 @@ MonoBehaviour:
   - Event:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 101740584}
+        - m_Target: {fileID: 1884445875}
           m_MethodName: LoadScene
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 15
             m_FloatArgument: 0
             m_StringArgument: FirstStoryHallway
             m_BoolArgument: 0
@@ -1635,6 +1623,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1884445875 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1973935600858765655, guid: 853d959efca60d04ba109c6233ed1c29,
+    type: 3}
+  m_PrefabInstance: {fileID: 9204298136477349542}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919bc0fffb6b1c847bbc7f7b038c8c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1928525644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1779,15 +1779,15 @@ MonoBehaviour:
   - Event:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 101740584}
+        - m_Target: {fileID: 1884445875}
           m_MethodName: LoadScene
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 3
             m_FloatArgument: 0
-            m_StringArgument: 03DiningRoom
+            m_StringArgument: DiningRoom
             m_BoolArgument: 0
           m_CallState: 2
     objectUsed: {fileID: 11400000, guid: c44a6bef868167748bb6009199758ec9, type: 2}

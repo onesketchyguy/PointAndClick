@@ -118,7 +118,7 @@ namespace World
             // Check to see the usage of this item
             for (int i = 0; i < interactions.Length; i++)
             {
-                if (interactions[i].objectUsed == @object)
+                if (interactions[i].objectUsed == @object || (interactions[i].objectUsed == null && InteractionManager.canHoldWhileInteracting.Contains(@object)))
                 {
                     var output = interactions[i].GetOutput();
 
@@ -133,7 +133,7 @@ namespace World
                 }
             }
 
-            if (@object == null)
+            if (@object == null || InteractionManager.canHoldWhileInteracting.Contains(@object))
                 cutSceneManager.DisplayMessage(defaultOutPut);
             else
                 cutSceneManager.DisplayMessage(InteractionManager.GetFailedActionOutput(@object, gameObject));

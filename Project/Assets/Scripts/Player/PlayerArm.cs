@@ -33,6 +33,11 @@ namespace Player
             }
         }
 
+        private void OnDisable()
+        {
+            move.overrideFace = false;
+        }
+
         private void LookAtPosition(GameObject follower, Vector3 followPosition)
         {
             // Get direction you want to point at

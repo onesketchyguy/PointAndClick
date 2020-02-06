@@ -13,21 +13,29 @@ namespace Player
 
         public static WorldObject[] _items;
 
-        private void Start()
+        private void OnEnable()
         {
-            if (_items != null)
+            if (!InteractionManager.canHoldWhileInteracting.Contains(candle))
             {
-                items = _items;
+                InteractionManager.canHoldWhileInteracting.Add(candle);
             }
+
+            if (_items != null)
+                items = _items;
 
             if (itemsChangedCallback != null)
                 itemsChangedCallback.Invoke(_items);
             itemsChangedCallback += UpdateItems;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             arm.SetActive(usingCandle);
+
+            if (!contains(InteractionManager.objectUsing))
+            {
+                InteractionManager.objectUsing = null;
+            }
 
             usingCandle = contains(candle) && InteractionManager.objectUsing == candle;
         }

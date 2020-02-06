@@ -36,7 +36,7 @@ namespace Debugging
                 {
                     if (debugLighting != null)
                         debugLighting.gameObject.SetActive(false);
-                    globalLighting.gameObject.SetActive(debugLighting.gameObject.activeSelf == false);
+                    globalLighting.gameObject.SetActive(debugLighting != null && debugLighting.gameObject.activeSelf == false);
                 }
         }
     }
